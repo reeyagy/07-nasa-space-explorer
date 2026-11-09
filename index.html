@@ -25,6 +25,17 @@
         <p>Select a date range and click "Get Space Images" to explore the cosmos!</p>
       </div>
     </div>
+
+    <dialog id="apodDialog" class="apod-dialog" aria-labelledby="dialogTitle">
+      <form method="dialog">
+        <button class="dialog-close" aria-label="Close image details">Close</button>
+      </form>
+      <img id="dialogImage" class="dialog-image" alt="" />
+      <h2 id="dialogTitle"></h2>
+      <p id="dialogDate" class="dialog-date"></p>
+      <p id="dialogExplanation" class="dialog-explanation"></p>
+      <a id="dialogVideoLink" target="_blank" rel="noopener noreferrer" hidden>Watch this APOD video</a>
+    </dialog>
   </div>
 
   <script src="js/dateRange.js"></script>
