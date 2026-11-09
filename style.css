@@ -5,10 +5,24 @@
   padding: 0;
 }
 
+/* NASA Web Design System-inspired colors */
+:root {
+  --nasa-blue: #0b3d91;
+  --nasa-deep-blue: #061f4a;
+  --nasa-cyan: #00a6d2;
+  --nasa-red: #c62d1f;
+  --text-color: #212121;
+  --muted-color: #5b616b;
+  --border-color: #d6d7d9;
+  --surface-color: #ffffff;
+  --page-color: #f1f1f1;
+}
+
 /* Base page styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--page-color);
   padding: 20px;
 }
 
@@ -29,9 +43,14 @@ body {
 }
 
 h1 {
-  font-family: Verdana, sans-serif;
+  font-family: Merriweather, Georgia, serif;
   font-weight: bold;
-  color: #212121;
+  color: var(--nasa-blue);
+}
+
+h2 {
+  font-family: Merriweather, Georgia, serif;
+  color: var(--nasa-deep-blue);
 }
 
 /* Logo */
@@ -53,11 +72,11 @@ h1 {
 /* Inputs and buttons */
 input[type="date"],
 button {
-  font-family: Arial, sans-serif;
+  font-family: inherit;
   font-weight: normal;
-  color: #666;
+  color: var(--text-color);
   padding: 10px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 16px;
   line-height: 1.4;
@@ -66,12 +85,18 @@ button {
 
 /* Button specific */
 button {
-  background-color: #d3d3d3;
-  color: black;
+  background-color: var(--nasa-blue);
+  color: var(--surface-color);
   cursor: pointer;
 }
 button:hover {
-  background-color: #bfbfbf;
+  background-color: var(--nasa-deep-blue);
+}
+
+input[type="date"]:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--nasa-cyan);
+  outline-offset: 2px;
 }
 
 /* Stack horizontally on wider screens */
@@ -96,23 +121,62 @@ button:hover {
   justify-content: center;
 }
 
+.space-fact {
+  margin-bottom: 20px;
+  padding: 18px 22px;
+  border-left: 5px solid var(--nasa-cyan);
+  color: var(--surface-color);
+  background: var(--nasa-deep-blue);
+}
+
+.space-fact h2 {
+  margin-bottom: 6px;
+  color: var(--surface-color);
+  font-size: 18px;
+}
+
+.space-fact p {
+  line-height: 1.5;
+}
+
+.loading-message {
+  flex: 1 1 100%;
+  padding: 40px;
+  color: var(--nasa-blue);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 /* Gallery items */
 .gallery-item {
   flex: 1 1 100%;  /* full width by default */
   min-width: 280px;
   max-width: 500px;
-  background: white;
+  background: var(--surface-color);
   padding: 10px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px rgba(6, 31, 74, 0.12);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  cursor: default;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.gallery-item[role="button"] {
   cursor: pointer;
 }
 
+.gallery-item:hover {
+  border-color: var(--nasa-cyan);
+  box-shadow: 0 5px 14px rgba(6, 31, 74, 0.18);
+  transform: translateY(-2px);
+}
+
 .gallery-item:focus-visible {
-  outline: 3px solid #1b6ec2;
+  outline: 3px solid var(--nasa-cyan);
   outline-offset: 3px;
 }
 
@@ -128,6 +192,21 @@ button:hover {
   height: 200px;
   object-fit: cover;
   border-radius: 4px;
+  transition: transform 250ms ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-video-link {
+  margin-top: 12px;
+  color: var(--nasa-blue);
+  font-weight: 700;
+}
+
+.gallery-video-link:hover {
+  color: var(--nasa-deep-blue);
 }
 
 .gallery-item p {
@@ -141,7 +220,7 @@ button:hover {
   flex: 1 1 100%;
   text-align: center;
   padding: 40px;
-  color: #666;
+  color: var(--muted-color);
 }
 
 .placeholder-icon {
@@ -154,9 +233,12 @@ button:hover {
   max-height: calc(100vh - 32px);
   margin: auto;
   padding: 24px;
-  border: 0;
+  border: 1px solid var(--border-color);
+  border-top: 6px solid var(--nasa-blue);
   border-radius: 8px;
   overflow: auto;
+  color: var(--text-color);
+  background: var(--surface-color);
 }
 
 .apod-dialog::backdrop {
@@ -167,6 +249,11 @@ button:hover {
   display: block;
   width: auto;
   margin: 0 0 16px auto;
+  background: var(--nasa-red);
+}
+
+.dialog-close:hover {
+  background: #99231b;
 }
 
 .dialog-image {
@@ -180,7 +267,7 @@ button:hover {
 
 .dialog-date {
   margin-top: 8px;
-  color: #555;
+  color: var(--muted-color);
 }
 
 .dialog-explanation {
@@ -191,4 +278,18 @@ button:hover {
 .apod-dialog a {
   display: inline-block;
   margin-top: 16px;
+  color: var(--nasa-blue);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item,
+  .gallery-item img {
+    transition: none;
+  }
+
+  .gallery-item:hover,
+  .gallery-item:hover img {
+    transform: none;
+  }
 }
